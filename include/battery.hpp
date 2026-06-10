@@ -31,7 +31,7 @@ typedef void (*os_LCD_VRAMRestore_t)(void);
  * @param chemistry Active battery_type enum (alkaline, nimh, or dead)
  * @return Remainder percentage bound strictly from 0 to 100
  */
-inline int Battery_GetPercent(int measured_cv, battery_type chemistry) {
+inline int Battery_GetPercent(int measured_cv,enum battery_type chemistry) {
     // Safety Catch: If the battery is flagged as dead, always return 0%
     if (chemistry == dead || measured_cv < 100) {
         return 0;
@@ -64,7 +64,7 @@ inline int Battery_GetPercent(int measured_cv, battery_type chemistry) {
  *
  * @return Detected dynamic state (alkaline, nimh, or dead)
  */
-inline battery_type Battery_GetChemistry() {
+inline enum battery_type Battery_GetChemistry() {
     // Function pointer initialization mapping directly to your symbol addresses
     os_Battery_GetVoltage_t Battery_GetVoltage = (os_Battery_GetVoltage_t)0x8002a614;
     os_LCD_GetVRAMAddress_t LCD_GetVRAMAddress = (os_LCD_GetVRAMAddress_t)0x8002e13c;

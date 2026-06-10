@@ -1,5 +1,5 @@
-#include <dirent.h> 
-#include <gint/display.h> 
+#include <dirent.h>
+#include <gint/display.h>
 #include <gint/keyboard.h>
 #include <justui/jbutton.h>
 #include <justui/jfileselect.h>
@@ -10,16 +10,17 @@
 #include <stdio.h>
 
 // Include for Battery Percentage!
-#include "../include/battery.h"
+// #include "../include/battery.hpp"
 
 #define VERSION "0.0.1-alpha.1"
 
 // HH3 Information
+// NOLINTBEGIN
 HHK_NAME("Classpad File Manager")
 HHK_AUTHOR("HopedCrown")
 HHK_DESCRIPTION("Small, Basic File Manager via JustUI and Gint")
 HHK_VERSION(VERSION)
-
+// NOLINTEND
 /*
 static bool all_file_filter(struct dirent const *ent)
 {
@@ -36,7 +37,7 @@ int main(void) {
   // Create the main scene (fullscreen)
   jscene *scene = jscene_create_fullscreen(NULL);
   jlabel *title = jlabel_create("Classpad File Manager v" VERSION, scene);
-  jlabel *battery_pcent = jlabel_create("<<TEMP>>", scene);
+  // jlabel *battery_pcent = jlabel_create("<<TEMP>>", scene);
 
   // We will use a main vertical box layout:
   // Top component will be a stack layout holding our tabs.
@@ -145,8 +146,8 @@ int main(void) {
   jwidget_set_padding(title, 5, 6, 5, 6);
 
   // Setup Battery Percentage for Every Tab!
-  jwidget_set_stretch(battery_pcent, 1, 0, false);
-  jwidget_set_background(title, C_WHITE);
+  // jwidget_set_stretch(battery_pcent, 1, 0, false);
+  // jwidget_set_background(title, C_WHITE);
 
   // int BatteryVoltage; // Set up battery Voltage Variable for later
   bool running = true;
