@@ -1,13 +1,13 @@
-#include <gint/display.h>
+#include <dirent.h> 
+#include <gint/display.h> 
 #include <gint/keyboard.h>
 #include <justui/jbutton.h>
+#include <justui/jfileselect.h>
 #include <justui/jlabel.h>
 #include <justui/jlayout.h>
 #include <justui/jscene.h>
 #include <justui/jwidget.h>
-#include <justui/jfileselect.h>
 #include <stdio.h>
-#include <dirent.h>
 
 // Include for Battery Percentage!
 #include "../include/battery.h"
@@ -32,8 +32,7 @@ static bool all_file_filter(struct dirent const *ent)
 
 */
 
-int main(void)
-{
+int main(void) {
   // Create the main scene (fullscreen)
   jscene *scene = jscene_create_fullscreen(NULL);
   jlabel *title = jlabel_create("Classpad File Manager v" VERSION, scene);
@@ -158,8 +157,7 @@ int main(void)
   // EVENT LOOP
   // ==========================================
   // int BatteryVoltage;
-  while (running)
-  {
+  while (running) {
     // BatteryVoltage = 100 * Battery_GetVoltage();
     // B_PCENT =
 
@@ -167,27 +165,19 @@ int main(void)
 
     jevent e = jscene_run(scene);
 
-    if (e.type == JSCENE_PAINT)
-    {
+    if (e.type == JSCENE_PAINT) {
       dclear(C_WHITE);
       jscene_render(scene);
       dupdate();
-    }
-    else if (e.type == JBUTTON_TRIGGERED)
-    {
-      if (e.source == b_exit)
-      {
+    } else if (e.type == JBUTTON_TRIGGERED) {
+      if (e.source == b_exit) {
         running = false;
-      }
-      else if (e.source == b_tab1)
-      {
+      } else if (e.source == b_tab1) {
         jscene_show_and_focus(scene, tab1);
         jbutton_set_disabled(b_tab1, true);
         jbutton_set_disabled(b_tab2, false);
         // jbutton_set_disabled(b_tab3, false);
-      }
-      else if (e.source == b_tab2)
-      {
+      } else if (e.source == b_tab2) {
         jscene_show_and_focus(scene, tab2);
         jbutton_set_disabled(b_tab1, false);
         jbutton_set_disabled(b_tab2, true);
@@ -211,17 +201,13 @@ int main(void)
         jlabel_set_text(t2_status, buf);
       }
     }*/
-      else if (e.type == JWIDGET_KEY && e.key.type == KEYEV_DOWN)
-      {
+      else if (e.type == JWIDGET_KEY && e.key.type == KEYEV_DOWN) {
         // Hardware fallback for exiting (if available)
         if (e.key.key == KEY_CLEAR || e.key.key == KEY_EXIT ||
-            e.key.key == KEY_HOME)
-        {
+            e.key.key == KEY_HOME) {
           running = false;
         }
-      }
-      else if (e.type == JFILESELECT_VALIDATED)
-      {
+      } else if (e.type == JFILESELECT_VALIDATED) {
         jscene_show_and_focus(scene, opt_screen);
       }
     }
