@@ -53,11 +53,7 @@ int main(void) {
   jwidget_set_stretch(stack, 1, 1, false);
 
   // ------------- TAB 1: Welcome -------------
-  jwidget *tab1 = jwidget_create(stack);
-  jlayout_set_vbox(tab1);
-  // Stretch to take all remaining vertical space
-  jwidget_set_stretch(tab1, 1, 1, false);
-  jfileselect *jfs = jfileselect_create(tab1);
+  jfileselect *jfs = jfileselect_create(stack);
   jwidget_set_stretch(jfs, 1, 1, false);
   jfileselect_set_saveas(jfs, true);
   jfileselect_set_show_file_size(jfs, true);
@@ -172,6 +168,7 @@ int main(void) {
       dupdate();
     } else if (e.type == JBUTTON_TRIGGERED) {
       if (e.source == b_exit) {
+        // Make exiting quicker
         running = false;
       } else if (e.source == b_tab1) {
         jscene_show_and_focus(scene, jfs);
